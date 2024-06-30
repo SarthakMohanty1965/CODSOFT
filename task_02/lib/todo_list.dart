@@ -1,0 +1,53 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+class ToDoList extends StatelessWidget {
+  late final String taskName;
+  late final bool taskCompleted;
+  Function(bool?)? onChanged;
+
+  ToDoList({
+    super.key,
+    required this.taskName,
+    required this.taskCompleted,
+    required this.onChanged,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 22, left: 22, right: 22),
+      child: Container(
+        padding: EdgeInsets.all(8),
+        decoration: BoxDecoration(
+            color: Colors.red.shade200,
+            border: Border.all(width: 0.6, color: Colors.black12),
+            borderRadius: BorderRadius.circular(6),
+            boxShadow: [
+              BoxShadow(
+                offset: Offset(2, 3),
+                spreadRadius: 1,
+                color: Colors.black12,
+              )
+            ]),
+        child: Row(
+          children: [
+            Checkbox(
+                activeColor: Color.fromARGB(255, 215, 125, 125),
+                value: taskCompleted,
+                onChanged: onChanged),
+            Text(
+              taskName,
+              style: TextStyle(
+                  decoration: taskCompleted
+                      ? TextDecoration.lineThrough
+                      : TextDecoration.none,
+                  color: taskCompleted?Colors.black54:Colors.white,
+                  letterSpacing:taskCompleted?0.8:1.8),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
