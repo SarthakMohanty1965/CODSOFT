@@ -5,8 +5,9 @@ import 'package:todolist/todo_list.dart';
 
 class AddNewTask extends StatelessWidget {
   final controller;
+  VoidCallback onCancel;
   VoidCallback onSave;
-  AddNewTask ({super.key,required this.controller, required this.onSave});
+  AddNewTask ({super.key,required this.controller, required this.onSave, required this.onCancel});
 
   @override
   Widget build(BuildContext context) {
@@ -37,9 +38,7 @@ class AddNewTask extends StatelessWidget {
                       ),
                     child: Text('Save')),
 
-                ElevatedButton(onPressed: (){
-                  Navigator.of(context).pop;
-                },style: ElevatedButton.styleFrom(
+                ElevatedButton(onPressed:onCancel,style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.red.shade200,
                 ),
                     child: Text('Close')),

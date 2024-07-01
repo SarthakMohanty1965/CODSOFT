@@ -47,6 +47,11 @@ class _MyHomePageState extends State<MyHomePage> {
       return AddNewTask(
         controller: _controller,
         onSave: Saved,
+        onCancel: (){
+          Navigator.of(context).pop();
+          _controller.clear();
+        },
+
       );
     });
   }
@@ -79,6 +84,11 @@ class _MyHomePageState extends State<MyHomePage> {
             return ToDoList(
                 taskName: toDoList[index][0],
                 taskCompleted: toDoList[index][1],
+                onDelete: (){
+                  setState(() {
+                    toDoList.remove(toDoList[index]);
+                  });
+                },
                 onChanged: (v) {
                   setState(() {
                     toDoList[index][1] = !toDoList[index][1];

@@ -1,16 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class ToDoList extends StatelessWidget {
   late final String taskName;
   late final bool taskCompleted;
   Function(bool?)? onChanged;
+  VoidCallback onDelete;
 
   ToDoList({
     super.key,
     required this.taskName,
     required this.taskCompleted,
     required this.onChanged,
+    required this.onDelete
   });
 
   @override
@@ -36,15 +39,18 @@ class ToDoList extends StatelessWidget {
                 activeColor: Color.fromARGB(255, 215, 125, 125),
                 value: taskCompleted,
                 onChanged: onChanged),
-            Text(
-              taskName,
-              style: TextStyle(
-                  decoration: taskCompleted
-                      ? TextDecoration.lineThrough
-                      : TextDecoration.none,
-                  color: taskCompleted?Colors.black54:Colors.white,
-                  letterSpacing:taskCompleted?0.8:1.8),
+            Expanded(
+              child: Text(
+                taskName,
+                style: TextStyle(
+                    decoration: taskCompleted
+                        ? TextDecoration.lineThrough
+                        : TextDecoration.none,
+                    color: taskCompleted?Colors.black54:Colors.white,
+                    letterSpacing:taskCompleted?0.8:1.8),
+              ),
             ),
+            IconButton(onPressed: onDelete, icon: Icon(Icons.delete_outline_rounded))
           ],
         ),
       ),
