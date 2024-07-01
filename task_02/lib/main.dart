@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todolist/todo_list.dart';
 
 
 void main() {
@@ -52,7 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
 
       body: Center(
-        /*child: ListView.builder(
+        child: ListView.builder(
           itemCount: toDoList.length,
           itemBuilder: (context, index) {
             return ToDoList(
@@ -64,7 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   });
                 });
           },
-        ),*/
+        ),
       ),
       bottomSheet: Container(
         height: 70,
@@ -134,10 +135,10 @@ class _MyHomePageState extends State<MyHomePage> {
                     onTap: () {},
 
                     child:const Tooltip(
-                      message: "Share everyone",
+                      message: "Share ScreenShot",
                       child: Icon(
-                        Icons.share_rounded,
-                        color: Colors.white70,
+                        Icons.local_fire_department_outlined,
+                        color: Colors.white,
                       ),
                     ))
               ],
@@ -158,7 +159,7 @@ class _MyHomePageState extends State<MyHomePage> {
           Icons.add_rounded,
           color: Colors.white70,
         ),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      ),
       backgroundColor: Color.fromARGB(225, 224, 125, 125),
     );
   }
