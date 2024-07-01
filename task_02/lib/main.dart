@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todolist/addtask.dart';
 import 'package:todolist/todo_list.dart';
 
 
@@ -33,10 +34,29 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+
+  final _controller = TextEditingController();
   List toDoList = [
     ['make tutorials', false],
     ['Do exercise', true],
   ];
+
+  void createNewTask(){
+
+    showDialog(context: context, builder: (context){
+      return AddNewTask(
+        controller: _controller,
+        onSave: Saved,
+      );
+    });
+  }
+  void Saved(){
+    setState(() {
+      toDoList.add([_controller.text,false]);
+      _controller.clear();
+    });
+    Navigator.of(context).pop();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -147,9 +167,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          /*Navigator.push(context, MaterialPageRoute(builder: (context)=>AddTask()));*/
-        },
+        onPressed: createNewTask,
         elevation: 12,
         shape: CircleBorder(),
         tooltip: 'Add Task',
