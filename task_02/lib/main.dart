@@ -39,7 +39,7 @@ class _MyHomePageState extends State<MyHomePage> {
   List toDoList = [
     ['Testing1', false],
     ['Testing2', true],
-    ['Testing3',false], 
+    ['Testing3',false],
   ];
 
   void createNewTask(){
@@ -178,7 +178,7 @@ class _MyHomePageState extends State<MyHomePage> {
         elevation: 12,
         shape: const CircleBorder(),
         tooltip: 'Add Task',
-        mini: true,
+
         backgroundColor: Colors.red.shade200,
         child: const Icon(
           Icons.add_rounded,

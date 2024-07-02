@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class ToDoList extends StatelessWidget {
   late final String taskName;
@@ -23,13 +21,13 @@ class ToDoList extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(top: 22, left: 22, right: 22),
       child: Container(
-        padding: EdgeInsets.all(8),
+        padding: const EdgeInsets.all(8),
         decoration: BoxDecoration(
             color: Colors.red.shade200,
             border: Border.all(width: 0.6, color: Colors.black12),
             borderRadius: BorderRadius.circular(6),
             boxShadow: [
-              BoxShadow(
+              const BoxShadow(
                 offset: Offset(2, 3),
                 spreadRadius: 1,
                 color: Colors.black12,
@@ -38,7 +36,7 @@ class ToDoList extends StatelessWidget {
         child: Row(
           children: [
             Checkbox(
-                activeColor: Color.fromARGB(255, 215, 125, 125),
+                activeColor: const Color.fromARGB(255, 215, 125, 125),
                 value: taskCompleted,
                 onChanged: onChanged),
             Expanded(
@@ -54,10 +52,10 @@ class ToDoList extends StatelessWidget {
             ),
             Tooltip(
               message: "Edit Task",
-                child: IconButton(onPressed: onEdit, icon: Icon(Icons.edit_outlined,color: Colors.white70,))),
+                child: IconButton(onPressed: onEdit, icon: const Icon(Icons.edit_outlined,color: Colors.white70,))),
             Tooltip(
               message: "Delete Task",
-                child: IconButton(onPressed: onDelete, icon: Icon(Icons.delete_outline_rounded,color: Colors.white70,)))
+                child: IconButton(onPressed: onDelete, icon: const Icon(Icons.delete_outline_rounded,color: Colors.white70,)))
           ],
         ),
       ),
