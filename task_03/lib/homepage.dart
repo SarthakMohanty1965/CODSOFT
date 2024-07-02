@@ -138,7 +138,7 @@ class _MyHomePageState extends State<StatefulWidget> {
 
                     },
                     focusColor: Colors.blue,
-                    child:  Icon(Icons.skip_previous_rounded,color: Colors.white70,size: 45),
+                    child:  Icon(Icons.skip_previous_rounded,color: Colors.white70,size: 54),
 
                   ),
                   const SizedBox(
@@ -146,14 +146,14 @@ class _MyHomePageState extends State<StatefulWidget> {
                   ),
                    InkWell(
                        onTap: (){},
-                       child: Icon(Icons.play_arrow_rounded,color: Colors.white70,size: 56,)),
+                       child: Icon(Icons.play_arrow_rounded,color: Colors.white70,size: 72,)),
 
                   const SizedBox(
                     width: 22,
                   ),
                   InkWell(
                       onTap: (){},
-                      child: Icon(Icons.skip_next_rounded,color: Colors.white70,size: 45)),
+                      child: Icon(Icons.skip_next_rounded,color: Colors.white70,size: 54)),
 
                 ],
               ),
