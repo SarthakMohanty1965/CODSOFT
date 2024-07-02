@@ -1,7 +1,9 @@
 
 import 'package:audioplayers/audioplayers.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 
 
@@ -77,9 +79,13 @@ class _MyHomePageState extends State<StatefulWidget> {
         child: Padding(
           padding: const EdgeInsets.all(12.0),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
             children: [
+              Expanded(
+                flex: 1,
+                  child: SizedBox(height: 10,)),
               Padding(
-                padding: const EdgeInsets.all(68.0),
+                padding: const EdgeInsets.only(top: 28.0,left: 16,right: 16),
                 child: AspectRatio(
                   aspectRatio: 1 / 1,
                   child: Container(
@@ -99,7 +105,7 @@ class _MyHomePageState extends State<StatefulWidget> {
                       children: [
                         Icon(
                           Icons.play_circle_fill_rounded,
-                          color: Colors.black12,
+                          color: Colors.black26,
                           size: 200,
                         ),
                         SizedBox(
@@ -109,7 +115,7 @@ class _MyHomePageState extends State<StatefulWidget> {
                           "MUSIC PLAYER",
                           style: TextStyle(
                               fontSize: 22,
-                              fontWeight: FontWeight.w300,
+                              fontWeight: FontWeight.w400,
                               letterSpacing: 8,
                               color: Colors.black12),
                         )
@@ -119,51 +125,42 @@ class _MyHomePageState extends State<StatefulWidget> {
                 ),
               ),
               Expanded(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    InkWell(
-                      onTap: (){
+                flex: 2,
+                child: SizedBox(
+                  height: 12,
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  InkWell(
+                    onTap: (){
 
-                      },
-                      focusColor: Colors.blue,
-                      child: Container(
-                        height: 44,
-                        width: 60,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12),
-                          border: Border.all(width: 0.6, color: Colors.black38),
-                          /*color: Colors.indigo.shade400,*/
+                    },
+                    focusColor: Colors.blue,
+                    child:  Icon(Icons.skip_previous_rounded,color: Colors.white70,size: 45),
 
-                        ),
-                        child: const Icon(Icons.skip_previous_rounded,color: Colors.white70,),
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 22,
-                    ),
-                    Container(
-                      height: 44,
-                      width: 90,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        border: Border.all(width: 0.6, color: Colors.black38),
-                      ),
-                      child: const Icon(Icons.pause_rounded,color: Colors.white70,),
-                    ),
-                    const SizedBox(
-                      width: 22,
-                    ),
-                    Container(
-                      height:44,
-                      width: 60,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        border: Border.all(width: 0.6, color: Colors.black38),
-                      ),
-                      child: const Icon(Icons.skip_next_rounded,color: Colors.white70,),
-                    ),
-                  ],
+                  ),
+                  const SizedBox(
+                    width: 22,
+                  ),
+                   InkWell(
+                       onTap: (){},
+                       child: Icon(Icons.play_arrow_rounded,color: Colors.white70,size: 56,)),
+
+                  const SizedBox(
+                    width: 22,
+                  ),
+                  InkWell(
+                      onTap: (){},
+                      child: Icon(Icons.skip_next_rounded,color: Colors.white70,size: 45)),
+
+                ],
+              ),
+              Expanded(
+                flex: 1,
+                child: SizedBox(
+                  height: 22,
                 ),
               )
             ],
