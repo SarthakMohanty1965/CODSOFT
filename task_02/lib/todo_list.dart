@@ -7,13 +7,15 @@ class ToDoList extends StatelessWidget {
   late final bool taskCompleted;
   Function(bool?)? onChanged;
   VoidCallback onDelete;
+  VoidCallback onEdit;
 
   ToDoList({
     super.key,
     required this.taskName,
     required this.taskCompleted,
     required this.onChanged,
-    required this.onDelete
+    required this.onDelete,
+    required this.onEdit,
   });
 
   @override
@@ -50,7 +52,12 @@ class ToDoList extends StatelessWidget {
                     letterSpacing:taskCompleted?0.8:1.8),
               ),
             ),
-            IconButton(onPressed: onDelete, icon: Icon(Icons.delete_outline_rounded))
+            Tooltip(
+              message: "Edit Task",
+                child: IconButton(onPressed: onEdit, icon: Icon(Icons.edit_outlined,color: Colors.white70,))),
+            Tooltip(
+              message: "Delete Task",
+                child: IconButton(onPressed: onDelete, icon: Icon(Icons.delete_outline_rounded,color: Colors.white70,)))
           ],
         ),
       ),

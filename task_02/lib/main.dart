@@ -37,8 +37,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
   final _controller = TextEditingController();
   List toDoList = [
-    ['make tutorials', false],
-    ['Do exercise', true],
+    ['Testing1', false],
+    ['Testing2', true],
+    ['Testing3',false], 
   ];
 
   void createNewTask(){
@@ -78,28 +79,47 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
 
       body: Center(
-        child: ListView.builder(
-          itemCount: toDoList.length,
-          itemBuilder: (context, index) {
-            return ToDoList(
-                taskName: toDoList[index][0],
-                taskCompleted: toDoList[index][1],
-                onDelete: (){
-                  setState(() {
-                    toDoList.remove(toDoList[index]);
-                  });
+        child: Column(
+
+          children: [
+            Expanded(
+              child: ListView.builder(
+                itemCount: toDoList.length,
+                itemBuilder: (context, index) {
+                  return ToDoList(
+                      taskName: toDoList[index][0],
+                      taskCompleted: toDoList[index][1],
+                      onEdit: (){
+                        _controller.text = toDoList[index][0];
+                        setState(() {
+                         createNewTask();
+                          toDoList[index][0]= _controller.text ;
+                         toDoList.remove(toDoList[index]);
+                        });
+                      },
+                      onDelete: (){
+                        setState(() {
+                          toDoList.remove(toDoList[index]);
+                        });
+                      },
+                      onChanged: (v) {
+                        setState(() {
+                          toDoList[index][1] = !toDoList[index][1];
+                        });
+                      });
                 },
-                onChanged: (v) {
-                  setState(() {
-                    toDoList[index][1] = !toDoList[index][1];
-                  });
-                });
-          },
+              ),
+            ),
+            const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: SizedBox(height: 72.5,),
+            )
+          ],
         ),
       ),
       bottomSheet: Container(
         height: 70,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
             color: Color.fromARGB(255, 238, 149, 151),
             borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(22), topRight: Radius.circular(22)),
@@ -108,26 +128,13 @@ class _MyHomePageState extends State<MyHomePage> {
             ]),
         child: Column(
           children: [
-            SizedBox(
+            const SizedBox(
               height: 22,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                InkWell(
-                    onTap: () {
-                      /*Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => HistoryPage()));*/
-                    },
-                    child: Tooltip(
-                      message: 'History',
-                      child: Icon(
-                        Icons.history_rounded,
-                        color: Colors.white70,
-                      ),
-                    )),
+
                 InkWell(
                     onTap: () {
                       showDialog(
@@ -161,16 +168,6 @@ class _MyHomePageState extends State<MyHomePage> {
                             color: Colors.white, fontWeight: FontWeight.w800),
                       ),
                     )),
-                InkWell(
-                    onTap: () {},
-
-                    child:const Tooltip(
-                      message: "Share ScreenShot",
-                      child: Icon(
-                        Icons.local_fire_department_outlined,
-                        color: Colors.white,
-                      ),
-                    ))
               ],
             ),
           ],
@@ -179,7 +176,7 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButton: FloatingActionButton(
         onPressed: createNewTask,
         elevation: 12,
-        shape: CircleBorder(),
+        shape: const CircleBorder(),
         tooltip: 'Add Task',
         mini: true,
         backgroundColor: Colors.red.shade200,
@@ -188,7 +185,9 @@ class _MyHomePageState extends State<MyHomePage> {
           color: Colors.white70,
         ),
       ),
-      backgroundColor: Color.fromARGB(225, 224, 125, 125),
+      backgroundColor: const Color.fromARGB(225, 224, 125, 125),
     );
   }
+
+
 }

@@ -1,7 +1,5 @@
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:todolist/todo_list.dart';
 
 class AddNewTask extends StatelessWidget {
   final controller;
@@ -13,22 +11,22 @@ class AddNewTask extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
       backgroundColor: Colors.red.shade200,
-      title: Text('New Task',style: TextStyle(fontSize: 20,color: Colors.white70),),
+      title: const Text('New Task',style: TextStyle(fontSize: 20,color: Colors.white70),),
       shadowColor: Colors.black,
       elevation: 22,
-      content: Container(
+      content: SizedBox(
         height: 120,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             TextField(
               controller: controller,
-              decoration:InputDecoration(
+              decoration:const InputDecoration(
                 icon:Icon( Icons.task_outlined,color: Colors.white70,),
                 hintText:"Add new Task"
               ),
             ),
-            SizedBox(height: 16,),
+            const SizedBox(height: 16,),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -36,12 +34,12 @@ class AddNewTask extends StatelessWidget {
                   style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.red.shade200,
                       ),
-                    child: Text('Save')),
+                    child: const Text('Save')),
 
                 ElevatedButton(onPressed:onCancel,style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.red.shade200,
                 ),
-                    child: Text('Close')),
+                    child: const Text('Close')),
               ],
             )
           ],
