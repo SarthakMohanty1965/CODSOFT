@@ -1,8 +1,12 @@
+// ignore_for_file: unused_import
+
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:musicplayer/playlist_provider.dart';
 import 'package:musicplayer/playlistpage.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({super.key});
@@ -14,8 +18,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<StatefulWidget> {
-  final p = AudioPlayer();
-
   List<Widget> body = [
     const SafeArea(
       child: Center(
@@ -53,131 +55,143 @@ class _MyHomePageState extends State<StatefulWidget> {
   ];
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          "MUSIC PLAYER",
-          style: TextStyle(
-              fontWeight: FontWeight.bold,
-              letterSpacing: 2,
-              color: Colors.white54),
-        ),
-        centerTitle: true,
-        toolbarHeight: 45,
-        elevation: 22,
-        backgroundColor: const Color.fromARGB(0, 0, 0, 0),
-        shadowColor: Colors.black,
-
-        actions: [Padding(
-          padding: const EdgeInsets.only(right: 12),
-          child: Tooltip(
-            message: 'Playlist',
-            child: IconButton(onPressed: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context)=>const PlaylistPage()));
-            }, icon: Icon(Icons.library_music_rounded,color: Colors.white70,)),
+    return Consumer<Playlist_Provider>(
+        builder: (context, value, child)
+    {
+      final playlist = value.playlist;
+      final currentSongIndex = value.currentSongIndex ?? 0;
+      final currentSong = playlist[currentSongIndex];
+      return Scaffold(
+        appBar: AppBar(
+          title: Text(
+            "MUSIC PLAYER",
+            style: TextStyle(
+                fontWeight: FontWeight.bold,
+                letterSpacing: 2,
+                color: Colors.white54),
           ),
-        )],
-      ),
+          centerTitle: true,
+          toolbarHeight: 45,
+          elevation: 22,
+          backgroundColor: const Color.fromARGB(0, 0, 0, 0),
+          shadowColor: Colors.black,
 
-      body: Center(
-        child: SafeArea(
-          child: Center(
-            child: Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Expanded(
-                      flex: 1,
-                      child: SizedBox(
-                        height: 10,
-                      )),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(top: 28.0, left: 16, right: 16),
-                    child: AspectRatio(
-                      aspectRatio: 1 / 1,
-                      child: Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(22),
-                            border:
-                                Border.all(width: 0.6, color: Colors.white12),
-                            color: Colors.indigo.shade400,
-                            boxShadow: const [
-                              BoxShadow(
-                                  offset: Offset(3, 4),
-                                  blurRadius: 1,
-                                  spreadRadius: 3,
-                                  color: Colors.black38)
-                            ]),
-                        child: const Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(
-                              Icons.play_circle_fill_rounded,
-                              color: Colors.black26,
-                              size: 200,
-                            ),
-                            Text(
-                              "MUSIC PLAYER",
-                              style: TextStyle(
-                                  fontSize: 22,
-                                  fontWeight: FontWeight.w400,
-                                  letterSpacing: 8,
-                                  color: Colors.black12),
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    flex: 2,
-                    child: SizedBox(
-                      height: 12,
-                    ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      InkWell(
-                        onTap: () {},
-                        focusColor: Colors.blue,
-                        child: Icon(Icons.skip_previous_rounded,
-                            color: Colors.white70, size: 54),
-                      ),
-                      const SizedBox(
-                        width: 22,
-                      ),
-                      InkWell(
-                          onTap: () {},
-                          child: Icon(
-                            Icons.play_arrow_rounded,
-                            color: Colors.white70,
-                            size: 72,
-                          )),
-                      const SizedBox(
-                        width: 22,
-                      ),
-                      InkWell(
-                          onTap: () {},
-                          child: Icon(Icons.skip_next_rounded,
-                              color: Colors.white70, size: 54)),
-                    ],
-                  ),
-                  Expanded(
+          actions: [Padding(
+            padding: const EdgeInsets.only(right: 12),
+            child: Tooltip(
+              message: 'Playlist',
+              child: IconButton(onPressed: () {
+                Navigator.push(context, MaterialPageRoute(
+                    builder: (context) => const PlaylistPage()));
+              },
+                  icon: Icon(
+                    Icons.library_music_rounded, color: Colors.white70,)),
+            ),
+          )
+          ],
+        ),
+
+        body: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Expanded(
                     flex: 1,
                     child: SizedBox(
-                      height: 22,
+                      height: 10,
+                    )),
+                Padding(
+                  padding:
+                  const EdgeInsets.only(top: 28.0, left: 16, right: 16),
+                  child: AspectRatio(
+                    aspectRatio: 1 / 1,
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(22),
+                          border:
+                          Border.all(width: 0.6, color: Colors.white12),
+                          color: Colors.indigo.shade400,
+                          boxShadow: const [
+                            BoxShadow(
+                                offset: Offset(3, 4),
+                                blurRadius: 1,
+                                spreadRadius: 3,
+                                color: Colors.black38)
+                          ]),
+                      child: const Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.play_circle_fill_rounded,
+                            color: Colors.black26,
+                            size: 200,
+                          ),
+                          Text(
+                            "MUSIC PLAYER",
+                            style: TextStyle(
+                                fontSize: 22,
+                                fontWeight: FontWeight.w400,
+                                letterSpacing: 8,
+                                color: Colors.black12),
+                          )
+                        ],
+                      ),
                     ),
-                  )
-                ],
-              ),
+                  ),
+                ),
+                Expanded(
+                  flex: 2,
+                  child: SizedBox(
+                    height: 12,
+                  ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    InkWell(
+                      onTap:()=> value.leftskip(),
+                      focusColor: Colors.blue,
+                      child: Icon(Icons.skip_previous_rounded,
+                          color: Colors.white70, size: 54),
+                    ),
+                    const SizedBox(
+                      width: 22,
+                    ),
+                    InkWell(
+                        onTap: ()=>value.playorpause(),
+                        child: Icon(value.isPlaying?Icons.pause_rounded:Icons.play_arrow_rounded,
+                          color: Colors.white70,
+                          size: 72,
+                        )),
+                    const SizedBox(
+                      width: 22,
+                    ),
+                    InkWell(
+                        onTap:()=> value.rightskip(),
+                        child: Icon(Icons.skip_next_rounded,
+                            color: Colors.white70, size: 54)),
+                  ],
+                ),
+                Expanded(
+                  flex: 1,
+                  child: SizedBox(
+                    height: 22,
+                  ),
+                )
+              ],
             ),
           ),
         ),
-      ),
-      backgroundColor: Colors.indigoAccent,
-    );
+
+
+        backgroundColor: Colors.indigoAccent,
+      );
+    }
+
+      );
+
+    }
   }
-}
+

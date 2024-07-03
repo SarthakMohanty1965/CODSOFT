@@ -21,7 +21,7 @@ class _MyPlaylistProvider extends State<StatefulWidget> {
   }
 
   void gotoSong(int songIndex) {
-    playlistProvider.currentSongIndex = songIndex;
+    playlistProvider.currentSongIndex =(songIndex);
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => HomePage()));
   }
