@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:musicplayer/playlist_provider.dart';
+import 'package:provider/provider.dart';
 
 import 'homepage.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider(create: (context)=>Playlist_Provider()),
+  ],
+     child: const MyApp()
+  )
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -30,6 +37,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage>{
+
   @override
   Widget build(BuildContext context){
     return Scaffold(
