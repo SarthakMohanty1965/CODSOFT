@@ -1,4 +1,4 @@
-
+import 'dart:math';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:musicplayer/song.dart';
@@ -40,7 +40,7 @@ class Playlist_Provider extends ChangeNotifier{
     _isPlaying = true;
     notifyListeners();
   }
-
+  //play or pause
   playorpause() async{
    if(_isPlaying){
      pause();
@@ -70,6 +70,11 @@ class Playlist_Provider extends ChangeNotifier{
   onComplete(){
     notifyListeners();
     _audioPlayer.onPlayerComplete.listen((event) { rightskip();});
+  }
+  onShuffle()async{
+    final random = Random();
+  final newIndex = random.nextInt(_playlist.length);
+  currentSongIndex = newIndex;
   }
 
   List<Song> get playlist =>_playlist;

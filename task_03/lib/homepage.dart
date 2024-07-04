@@ -53,9 +53,7 @@ class _MyHomePageState extends State<StatefulWidget> {
   ];
   @override
   Widget build(BuildContext context) {
-    return Consumer<Playlist_Provider>(
-        builder: (context, value, child)
-    {
+    return Consumer<Playlist_Provider>(builder: (context, value, child) {
       final playlist = value.playlist;
       final currentSongIndex = value.currentSongIndex ?? 0;
       final currentSong = playlist[currentSongIndex];
@@ -73,22 +71,26 @@ class _MyHomePageState extends State<StatefulWidget> {
           elevation: 22,
           backgroundColor: const Color.fromARGB(0, 0, 0, 0),
           shadowColor: Colors.black,
-
-          actions: [Padding(
-            padding: const EdgeInsets.only(right: 12),
-            child: Tooltip(
-              message: 'Playlist',
-              child: IconButton(onPressed: () {
-                Navigator.push(context, MaterialPageRoute(
-                    builder: (context) => const PlaylistPage()));
-              },
-                  icon: const Icon(
-                    Icons.library_music_rounded, color: Colors.white70,)),
-            ),
-          )
+          actions: [
+            Padding(
+              padding: const EdgeInsets.only(right: 12),
+              child: Tooltip(
+                message: 'Playlist',
+                child: IconButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const PlaylistPage()));
+                    },
+                    icon: const Icon(
+                      Icons.library_music_rounded,
+                      color: Colors.white70,
+                    )),
+              ),
+            )
           ],
         ),
-
         body: SafeArea(
           child: Padding(
             padding: const EdgeInsets.all(12.0),
@@ -102,14 +104,13 @@ class _MyHomePageState extends State<StatefulWidget> {
                     )),
                 Padding(
                   padding:
-                  const EdgeInsets.only(top: 28.0, left: 16, right: 16),
+                      const EdgeInsets.only(top: 28.0, left: 16, right: 16),
                   child: AspectRatio(
                     aspectRatio: 1 / 1,
                     child: Container(
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(22),
-                          border:
-                          Border.all(width: 0.6, color: Colors.white12),
+                          border: Border.all(width: 0.6, color: Colors.white12),
                           color: Colors.indigo.shade400,
                           boxShadow: const [
                             BoxShadow(
@@ -139,37 +140,48 @@ class _MyHomePageState extends State<StatefulWidget> {
                     ),
                   ),
                 ),
-                const Expanded(
+                Expanded(
                   flex: 2,
-                  child: SizedBox(
-                    height: 12,
-                  ),
+                  child: SizedBox(),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     InkWell(
-                      onTap:()=> value.leftskip(),
+                      onTap: () => value.leftskip(),
                       focusColor: Colors.blue,
                       child: const Icon(Icons.skip_previous_rounded,
                           color: Colors.white70, size: 54),
                     ),
                     const SizedBox(
-                      width: 22,
+                      width: 18,
                     ),
                     InkWell(
-                        onTap: ()=>value.playorpause(),
-                        child: Icon(value.isPlaying?Icons.pause_rounded:Icons.play_arrow_rounded,
+                        onTap: () => value.playorpause(),
+                        child: Icon(
+                          value.isPlaying
+                              ? Icons.pause_rounded
+                              : Icons.play_arrow_rounded,
                           color: Colors.white70,
                           size: 72,
                         )),
                     const SizedBox(
-                      width: 22,
+                      width: 18,
                     ),
                     InkWell(
-                        onTap:()=> value.rightskip(),
+                        onTap: () => value.rightskip(),
                         child: const Icon(Icons.skip_next_rounded,
                             color: Colors.white70, size: 54)),
+                    const SizedBox(
+                      width: 18,
+                    ),
+                    IconButton(
+                        onPressed: () => value.onShuffle(),
+                        icon: const Icon(
+                          Icons.shuffle_rounded,
+                          color: Colors.white70,
+                          size: 36,
+                        )),
                   ],
                 ),
                 const Expanded(
@@ -182,14 +194,8 @@ class _MyHomePageState extends State<StatefulWidget> {
             ),
           ),
         ),
-
-
         backgroundColor: Colors.indigoAccent,
       );
-    }
-
-      );
-
-    }
+    });
   }
-
+}
