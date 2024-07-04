@@ -5,11 +5,11 @@ import 'package:musicplayer/song.dart';
 
 class Playlist_Provider extends ChangeNotifier{
   final List<Song> _playlist = [
-    Song(songName: "Bella Chiao Ringtone", audioPath: "assets/audio/bella.mp3"),
-    Song(songName: "Krishna Flute Ringtone", audioPath: "assets/audio/krishna_flute.mp3"),
-    Song(songName: "Let Me Down Slowly Ringtone", audioPath: "assets/audio/let_me_down.mp3"),
-    Song(songName: "Let me Love You Ringtone", audioPath: "assets/audio/let_me_love.mp3"),
-    Song(songName: "Tokyo Drift Ringtone", audioPath: "assets/audio/tokyo_drift.mp3"),
+    Song(songName: "Bella Chiao Ringtone", audioPath:"audio/bella.mp3"),
+    Song(songName: "Krishna Flute Ringtone", audioPath:"audio/krishna_flute.mp3"),
+    Song(songName: "Let Me Down Slowly Ringtone", audioPath:"audio/let_me_down.mp3"),
+    Song(songName: "Let me Love You Ringtone", audioPath:"audio/let_me_love.mp3"),
+    Song(songName: "Tokyo Drift Ringtone", audioPath:"audio/tokyo_drift.mp3"),
   ];
 
   int? _currentSongIndex = 1;
@@ -24,7 +24,7 @@ class Playlist_Provider extends ChangeNotifier{
   play() async{
     final String path = _playlist[_currentSongIndex!].audioPath;
     await _audioPlayer.stop();
-    await _audioPlayer.play(DeviceFileSource(path));
+    await _audioPlayer.play(AssetSource(path));
     _isPlaying = true;
     notifyListeners();
   }

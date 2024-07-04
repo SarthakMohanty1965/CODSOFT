@@ -1,15 +1,13 @@
 // ignore_for_file: unused_import
 
 import 'package:audioplayers/audioplayers.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:musicplayer/playlist_provider.dart';
 import 'package:musicplayer/playlistpage.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
-  HomePage({super.key});
+  const HomePage({super.key});
 
   @override
   State<StatefulWidget> createState() {
@@ -63,7 +61,7 @@ class _MyHomePageState extends State<StatefulWidget> {
       final currentSong = playlist[currentSongIndex];
       return Scaffold(
         appBar: AppBar(
-          title: Text(
+          title: const Text(
             "MUSIC PLAYER",
             style: TextStyle(
                 fontWeight: FontWeight.bold,
@@ -84,7 +82,7 @@ class _MyHomePageState extends State<StatefulWidget> {
                 Navigator.push(context, MaterialPageRoute(
                     builder: (context) => const PlaylistPage()));
               },
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.library_music_rounded, color: Colors.white70,)),
             ),
           )
@@ -97,7 +95,7 @@ class _MyHomePageState extends State<StatefulWidget> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Expanded(
+                const Expanded(
                     flex: 1,
                     child: SizedBox(
                       height: 10,
@@ -141,7 +139,7 @@ class _MyHomePageState extends State<StatefulWidget> {
                     ),
                   ),
                 ),
-                Expanded(
+                const Expanded(
                   flex: 2,
                   child: SizedBox(
                     height: 12,
@@ -153,7 +151,7 @@ class _MyHomePageState extends State<StatefulWidget> {
                     InkWell(
                       onTap:()=> value.leftskip(),
                       focusColor: Colors.blue,
-                      child: Icon(Icons.skip_previous_rounded,
+                      child: const Icon(Icons.skip_previous_rounded,
                           color: Colors.white70, size: 54),
                     ),
                     const SizedBox(
@@ -170,11 +168,11 @@ class _MyHomePageState extends State<StatefulWidget> {
                     ),
                     InkWell(
                         onTap:()=> value.rightskip(),
-                        child: Icon(Icons.skip_next_rounded,
+                        child: const Icon(Icons.skip_next_rounded,
                             color: Colors.white70, size: 54)),
                   ],
                 ),
-                Expanded(
+                const Expanded(
                   flex: 1,
                   child: SizedBox(
                     height: 22,
