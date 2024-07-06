@@ -55,13 +55,13 @@ class _MyHomePageState extends State<MyHomePage> {
                   ]),
               child: Text(
                 ' Chat app ',
-                style: GoogleFonts.acme(),
+                style: GoogleFonts.abel(),
               )),
         ),
         drawer: Drawer(
           shadowColor: Colors.black,
           elevation: 0,
-          backgroundColor: Colors.black54,
+          backgroundColor: Colors.black38,
           child: Center(
             child: Column(
               children: [
