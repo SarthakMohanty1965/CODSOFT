@@ -1,16 +1,13 @@
-import 'dart:ui';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
+  MyApp({super.key});
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -40,7 +37,7 @@ class _MyHomePageState extends State<MyHomePage> {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.black,
-          iconTheme: IconThemeData(color: Colors.indigo),
+          iconTheme: IconThemeData(color: Colors.teal.shade300),
           title: Container(
               decoration: BoxDecoration(
                   color: Colors.white,
@@ -55,7 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ]),
               child: Text(
                 ' Chat app ',
-                style: GoogleFonts.abel(),
+                style: a(),
               )),
         ),
         drawer: Drawer(
@@ -93,8 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: Card(
                         child: Text(
                           ' Settings ',
-                          style: GoogleFonts.abel(
-                              textStyle: TextStyle(fontSize: 18)),
+                          style: a(),
                         ),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(4)),
@@ -107,8 +103,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: Card(
                         child: Text(
                           ' About Me ',
-                          style: GoogleFonts.abel(
-                              textStyle: TextStyle(fontSize: 18)),
+                          style: a(),
                         ),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(4)),
@@ -132,5 +127,9 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
     );
+  }
+
+  a() {
+    return GoogleFonts.ubuntu(textStyle:TextStyle(fontSize: 16,fontWeight: FontWeight.w700));
   }
 }
