@@ -1,6 +1,6 @@
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:task_04/list_tile.dart';
 
 void main() {
   runApp(MyApp());
@@ -36,6 +36,10 @@ class _MyHomePageState extends State<MyHomePage> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          elevation: 0,
+          actions: [
+
+          ],
           backgroundColor: Colors.black,
           iconTheme: IconThemeData(color: Colors.teal.shade300),
           title: Container(
@@ -58,7 +62,7 @@ class _MyHomePageState extends State<MyHomePage> {
         drawer: Drawer(
           shadowColor: Colors.black,
           elevation: 0,
-          backgroundColor: Colors.black38,
+          backgroundColor: Colors.black45,
           child: Center(
             child: Column(
               children: [
@@ -67,11 +71,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     Container(
                       child: Image.asset('lib/assets/image/drawer_image.jpg',
                           fit: BoxFit.cover),
-
-                      ),
-
-
-
+                    ),
                   ],
                 ),
                 SizedBox(
@@ -115,14 +115,19 @@ class _MyHomePageState extends State<MyHomePage> {
               ],
             ),
           ),
-        ),
-        body: const Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text('h'),
-              Text('h'),
-            ],
+        ),backgroundColor: Colors.black,
+        body: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: ListView(
+            children: [
+              ListTilepage(),
+              ListTilepage(),
+              ListTilepage(),
+              ListTilepage(),
+              ListTilepage(),ListTilepage(),ListTilepage(),ListTilepage(),ListTilepage(),ListTilepage(),ListTilepage(),ListTilepage(),ListTilepage(),ListTilepage(),
+            ]
+
+
           ),
         ),
       ),
@@ -130,6 +135,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   a() {
-    return GoogleFonts.ubuntu(textStyle:TextStyle(fontSize: 16,fontWeight: FontWeight.w700));
+    return GoogleFonts.ubuntu(
+        textStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.w700));
   }
 }
