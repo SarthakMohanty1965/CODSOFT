@@ -54,13 +54,10 @@ class _MyHomePageState extends State<MyHomePage> {
                         offset: Offset(2, 4),
                         color: Colors.white)
                   ]),
-              child: Text(
-                ' Chat app ',
-                style: a(Colors.black,18.0)
-              )),
+              child: Text(' Chat app ', style: a(Colors.black, 18.0))),
         ),
         drawer: BackdropFilter(
-          filter: ImageFilter.blur(sigmaY: 6, sigmaX: 6),
+          filter: ImageFilter.blur(sigmaY: 1, sigmaX: 1),
           child: Drawer(
             elevation: 0,
             backgroundColor: Colors.black26,
@@ -69,18 +66,19 @@ class _MyHomePageState extends State<MyHomePage> {
                 children: [
                   Stack(
                     children: [
-                      Container(
-                        child: Image.asset('lib/assets/image/drawer_image.jpg',
-                            fit: BoxFit.cover),
-                      ),
+                      Image.asset('lib/assets/image/drawer_image.jpg',
+                          fit: BoxFit.cover),
                       Padding(
-                        padding: const EdgeInsets.only(top:78.0,left:12),
+                        padding: const EdgeInsets.only(top: 78.0, left: 12),
                         child: SizedBox(
                           child: BackdropFilter(
-                        filter: ImageFilter.blur(sigmaX: 1, sigmaY:1),
-                        child: Text('Welcome Back,\nUser',style: a(Colors.white,24.0),),
-                                                ),
-                                              ),
+                            filter: ImageFilter.blur(sigmaX: 1, sigmaY: 1),
+                            child: Text(
+                              'Welcome Back,\nUser',
+                              style: a(Colors.white, 24.0),
+                            ),
+                          ),
+                        ),
                       ),
                     ],
                   ),
@@ -92,22 +90,28 @@ class _MyHomePageState extends State<MyHomePage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       ListTile(
+                        leading: SizedBox(width: 24,),
                         tileColor: Colors.transparent,
-                        trailing: Icon(Icons.settings_outlined,color: Colors.white,),
+                        trailing: Icon(
+                          Icons.settings_outlined,
+                          color: Colors.white,
+                        ),
                         title: Text(
-                            ' Settings ',
-                            style: a(Colors.white,20.0),
-                          ),
+                          ' Settings ',
+                          style: a(Colors.white, 18.0),
+                        ),
                       ),
                       ListTile(
-                      tileColor: Colors.transparent,
-                          trailing: Icon(Icons.settings_outlined,color: Colors.white,),
-
+                        leading: SizedBox(width: 24,),
+                          tileColor: Colors.transparent,
+                          trailing: Icon(
+                            Icons.info_outline,
+                            color: Colors.white,
+                          ),
                           title: Text(
-                              ' About Me ',
-                              style: a(Colors.white,20.0),
-                            )
-                      )
+                            ' About Me ',
+                            style: a(Colors.white, 18.0),
+                          ))
                     ],
                   )),
                 ],
@@ -116,35 +120,48 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ),
         backgroundColor: Colors.black,
-        body: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: ListView(children: [
-            ListTilepage(),
-            ListTilepage(),
-            ListTilepage(),
-            ListTilepage(),
-            ListTilepage(),
-            ListTilepage(),
-            ListTilepage(),
-            ListTilepage(),
-            ListTilepage(),
-            ListTilepage(),
-            ListTilepage(),
-            ListTilepage(),
-            ListTilepage(),
-            ListTilepage(),
-          ]),
+        floatingActionButton: FloatingActionButton(
+          onPressed:(){} ,
+          tooltip:'New Chat' ,
+          shape: CircleBorder(),
+          splashColor: Colors.teal,
+        ),
+        body: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Center(
+              child: ListView(
+
+                  children: [
+                ListTilepage(),
+                ListTilepage(),
+                ListTilepage(),
+                ListTilepage(),
+                ListTilepage(),
+                ListTilepage(),
+                ListTilepage(),
+                ListTilepage(),
+                ListTilepage(),
+                ListTilepage(),
+                ListTilepage(),
+                ListTilepage(),
+                ListTilepage(),
+                ListTilepage(),
+
+              ]),
+            ),
+          ),
         ),
       ),
     );
   }
 
-  a(Color,txtSize) {
+  a(Color, txtSize) {
     return GoogleFonts.ubuntu(
         textStyle: TextStyle(
       fontSize: txtSize,
       fontWeight: FontWeight.w500,
-          color: Color,
+      color: Color,
     ));
   }
 }
