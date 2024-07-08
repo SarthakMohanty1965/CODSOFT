@@ -19,9 +19,9 @@ class _MyListTilePage extends State<StatefulWidget> {
         padding: const EdgeInsets.all(8.0),
         child: ListTile(
           horizontalTitleGap: 20,
-          contentPadding: EdgeInsets.all(4),
-          title: Text("UserName",style: font(16,Colors.white70,FontWeight.w700),),
-          subtitle: Text('user\'s text messages all appear here.',style: font(14,Colors.white54,FontWeight.w400),),
+          contentPadding: EdgeInsets.all(4.0),
+          title: Text("UserName",style: font(16.0,Colors.white70,FontWeight.w700),),
+          subtitle: Text('user\'s text messages all appear here.',style: font(14.0,Colors.white54,FontWeight.w400),),
           leading: CircleAvatar(
             backgroundColor: Colors.grey,
             child: Image.asset('lib/assets/image/drawer_image.jpg'),
