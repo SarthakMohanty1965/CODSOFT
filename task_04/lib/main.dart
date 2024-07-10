@@ -6,11 +6,11 @@ import 'package:task_04/list_tile.dart';
 import 'package:task_04/loginpage.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  MyApp({super.key});
+  const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
         useMaterial3: true,
       ),
-      home: LoginPage(),
+      home: const LoginPage(),
     );
   }
 }
@@ -40,7 +40,7 @@ class _MyHomePageState extends State<MyHomePage> {
       child: Scaffold(
         appBar: AppBar(
           elevation: 0.0,
-          actions: [],
+          actions: const [],
           backgroundColor: Colors.black,
           iconTheme: IconThemeData(color: Colors.teal.shade400),
           title: Container(
@@ -48,8 +48,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   color: Colors.white,
                   border: Border.all(width: 5, color: Colors.black12),
                   borderRadius: BorderRadius.circular(3),
-                  boxShadow: [
-                    const BoxShadow(
+                  boxShadow: const [
+                    BoxShadow(
                         blurRadius: 4,
                         spreadRadius: 1,
                         offset: Offset(2, 4),
@@ -91,9 +91,9 @@ class _MyHomePageState extends State<MyHomePage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       ListTile(
-                        leading: SizedBox(width: 24,),
+                        leading: const SizedBox(width: 24,),
                         tileColor: Colors.transparent,
-                        trailing: Icon(
+                        trailing: const Icon(
                           Icons.settings_outlined,
                           color: Colors.white,
                         ),
@@ -103,9 +103,9 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                       ),
                       ListTile(
-                        leading: SizedBox(width: 24,),
+                        leading: const SizedBox(width: 24,),
                           tileColor: Colors.transparent,
-                          trailing: Icon(
+                          trailing: const Icon(
                             Icons.info_outline,
                             color: Colors.white,
                           ),
@@ -124,7 +124,7 @@ class _MyHomePageState extends State<MyHomePage> {
         floatingActionButton: FloatingActionButton(
           onPressed:(){} ,
           tooltip:'New Chat' ,
-          shape: CircleBorder(),
+          shape: const CircleBorder(),
           splashColor: Colors.teal,
         ),
         body: Center(
@@ -157,12 +157,12 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  a(Color, txtSize) {
+  a(color, txtSize) {
     return GoogleFonts.ubuntu(
         textStyle: TextStyle(
       fontSize: txtSize,
       fontWeight: FontWeight.w500,
-      color: Color,
+      color: color,
     ));
   }
 }
