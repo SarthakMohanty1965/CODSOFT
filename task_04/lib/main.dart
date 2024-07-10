@@ -40,7 +40,9 @@ class _MyHomePageState extends State<MyHomePage> {
       child: Scaffold(
         appBar: AppBar(
           elevation: 0.0,
-          actions: const [],
+          actions:  [
+            IconButton(onPressed: (){ }, icon: Icon(Icons.more_vert_rounded,color: Colors.white,))
+          ],
           backgroundColor: Colors.black,
           iconTheme: IconThemeData(color: Colors.teal.shade400),
           title: Container(
@@ -121,11 +123,15 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ),
         backgroundColor: Colors.black,
-        floatingActionButton: FloatingActionButton(
-          onPressed:(){} ,
-          tooltip:'New Chat' ,
-          shape: const CircleBorder(),
-          splashColor: Colors.teal,
+        floatingActionButton: Padding(
+          padding: const EdgeInsets.only(bottom: 32.0,right: 18),
+          child: FloatingActionButton(child: Icon(Icons.add,color: Colors.white,),
+            onPressed:(){} ,
+            backgroundColor: Colors.black,
+            tooltip:'New Chat',
+            shape: const CircleBorder(side: BorderSide(color: Colors.white)),
+            splashColor: Colors.teal.shade100,
+          ),
         ),
         body: Center(
           child: Padding(
