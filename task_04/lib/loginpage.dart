@@ -15,19 +15,21 @@ class _MyLoginPage extends State<LoginPage> {
   final emailController = TextEditingController();
   final passController = TextEditingController();
 
-  void check(){
+  void check() {
     setState(() {
-      if(emailController.text=="sarthak" && passController.text == "9090"){
-        Navigator.push(context, MaterialPageRoute(builder: (context)=>MyHomePage()));
+      if (emailController.text == "sarthak" && passController.text == "9090") {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => const MyHomePage()));
       }
     });
-
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      body: Center(
+      body: Padding(
+        padding: const EdgeInsets.all(18.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
@@ -41,11 +43,11 @@ class _MyLoginPage extends State<LoginPage> {
                 Container(
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      border: Border.all(width: 3, color: Colors.indigoAccent),
+                      border: Border.all(width: 3, color: Colors.teal.shade100),
                     ),
                     child: Icon(
                       Icons.circle_rounded,
-                      color: Colors.indigo.shade200,
+                      color: Colors.teal.shade300,
                       size: 100,
                     )),
                 BackdropFilter(
@@ -60,20 +62,19 @@ class _MyLoginPage extends State<LoginPage> {
               ],
             ),
             const SizedBox(
-              height: 12,
+              height: 28,
             ),
             Text(
-              "CHAT APP",
-              style: GoogleFonts.alice(
+              "Chat App",
+              style: GoogleFonts.cedarvilleCursive(
                   textStyle: const TextStyle(
-                color: Colors.indigo,
-                fontSize: 24,
+                color: Colors.teal,
+                fontSize: 38,
                 wordSpacing: 8,
-                decoration: TextDecoration.overline,
               )),
             ),
             const SizedBox(
-              height: 12,
+              height: 18,
             ),
             TextFieldPage(
                 controller: emailController,
@@ -94,12 +95,49 @@ class _MyLoginPage extends State<LoginPage> {
                 controller: passController,
                 hintText: "Password",
                 obscureText: true),
-            ElevatedButton(onPressed: check, child: Text("Login",style: TextStyle(color: Colors.white),)),
-              const Expanded(
+            const SizedBox(
+              height: 28,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                OutlinedButton(
+                    onPressed: check,
+                    style: ButtonStyle(
+                        side: MaterialStateProperty.all(
+                          const BorderSide(color: Colors.white),
+                        ),
+                        shape: MaterialStateProperty.all(
+                            RoundedRectangleBorder(borderRadius: BorderRadius.circular(8))),),
+                    child: const Text(
+                      "     SignUp      ",
+                      style: TextStyle(color: Colors.white),
+                    )),
+                const SizedBox(
+                  width: 20,
+                ),
+                OutlinedButton(
+                    style: ButtonStyle(
+                        side: MaterialStateProperty.all(
+                          const BorderSide(color: Colors.white),
+                        ),
+                        shape: MaterialStateProperty.all(
+                            RoundedRectangleBorder(borderRadius: BorderRadius.circular(8))),
+                    ),
+                    onPressed: check,
+                    child: const Text(
+                      "     Login      ",
+                      style: TextStyle(color: Colors.white),
+                    )),
+                const SizedBox(
+                  width: 20,
+                )
+              ],
+            ),
+            const Expanded(
                 child: SizedBox(
               height: 12,
             )),
-
           ],
         ),
       ),

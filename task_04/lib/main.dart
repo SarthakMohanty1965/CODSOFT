@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
         useMaterial3: true,
       ),
-      home: const LoginPage(),
+      home: const MyHomePage(),
     );
   }
 }
@@ -41,7 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
         appBar: AppBar(
           elevation: 0.0,
           actions:  [
-            IconButton(onPressed: (){ }, icon: Icon(Icons.more_vert_rounded,color: Colors.white,))
+            IconButton(onPressed: (){ }, icon: const Icon(Icons.more_vert_rounded,color: Colors.teal,))
           ],
           backgroundColor: Colors.black,
           iconTheme: IconThemeData(color: Colors.teal.shade400),
@@ -52,18 +52,18 @@ class _MyHomePageState extends State<MyHomePage> {
                   borderRadius: BorderRadius.circular(3),
                   boxShadow: const [
                     BoxShadow(
-                        blurRadius: 4,
+                        blurRadius: 6,
                         spreadRadius: 1,
-                        offset: Offset(2, 4),
-                        color: Colors.white)
+                        offset: Offset(2,3),
+                        color: Colors.tealAccent)
                   ]),
-              child: Text(' Chat app ', style: a(Colors.black, 18.0))),
+              child: Text(' Chat app ', style: a1(Colors.black, 18.0))),
         ),
         drawer: BackdropFilter(
           filter: ImageFilter.blur(sigmaY: 1, sigmaX: 1),
           child: Drawer(
             elevation: 0,
-            backgroundColor: Colors.black26,
+            backgroundColor: Colors.black.withOpacity(0.6),
             child: Center(
               child: Column(
                 children: [
@@ -85,6 +85,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                     ],
                   ),
+
                   const SizedBox(
                     height: 12,
                   ),
@@ -112,7 +113,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             color: Colors.white,
                           ),
                           title: Text(
-                            ' About Me ',
+                            ' About me ',
                             style: a(Colors.white, 18.0),
                           ))
                     ],
@@ -125,38 +126,23 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Colors.black,
         floatingActionButton: Padding(
           padding: const EdgeInsets.only(bottom: 32.0,right: 18),
-          child: FloatingActionButton(child: Icon(Icons.add,color: Colors.white,),
-            onPressed:(){} ,
+          child: FloatingActionButton(onPressed:(){} ,
             backgroundColor: Colors.black,
             tooltip:'New Chat',
-            shape: const CircleBorder(side: BorderSide(color: Colors.white)),
-            splashColor: Colors.teal.shade100,
+            shape: const CircleBorder(side: BorderSide(color: Colors.teal)),
+            splashColor: Colors.teal.shade100,child: const Icon(Icons.add,color: Colors.white,),
           ),
         ),
         body: Center(
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Center(
-              child: ListView(
+            padding: const EdgeInsets.all(18.0),
+            child: ListView(
 
-                  children: [
-                ListTilepage(),
-                ListTilepage(),
-                ListTilepage(),
-                ListTilepage(),
-                ListTilepage(),
-                ListTilepage(),
-                ListTilepage(),
-                ListTilepage(),
-                ListTilepage(),
-                ListTilepage(),
-                ListTilepage(),
-                ListTilepage(),
-                ListTilepage(),
-                ListTilepage(),
+                children: [
+              ListTilepage(),
+              ListTilepage(),
 
-              ]),
-            ),
+            ]),
           ),
         ),
       ),
@@ -170,5 +156,13 @@ class _MyHomePageState extends State<MyHomePage> {
       fontWeight: FontWeight.w500,
       color: color,
     ));
+  }
+  a1(color, txtSize) {
+    return GoogleFonts.cedarvilleCursive(
+        textStyle: TextStyle(
+          fontSize: txtSize,
+          fontWeight: FontWeight.w500,
+          color: color,
+        ));
   }
 }
