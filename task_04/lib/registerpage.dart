@@ -3,30 +3,21 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:task_04/main.dart';
 import 'package:task_04/textfieldpage.dart';
 
-class LoginPage extends StatefulWidget {
+class RegisterPage extends StatefulWidget {
   final void Function()? onTap;
-  const LoginPage({super.key,required this.onTap});
+  const RegisterPage({super.key,required this.onTap});
   @override
-  State<LoginPage> createState() => _MyLoginPage();
+  State<RegisterPage> createState() => _MyRegisterPage();
 }
 
-class _MyLoginPage extends State<LoginPage> {
+class _MyRegisterPage extends State<RegisterPage> {
   final emailController = TextEditingController();
   final passController = TextEditingController();
+  final confirmController = TextEditingController();
 
-  void check() {
-    setState(() {
-      if (emailController.text == "sarthak" && passController.text == "9090") {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const MyHomePage()));
-      }
-    });
-  }
-  void SignIn(){}
-
+  void SignUp(){}
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -79,7 +70,7 @@ class _MyLoginPage extends State<LoginPage> {
             const SizedBox(
               height: 18,
             ),
-            Text('You were missied too much!\n         Time to Dig in ...',style: GoogleFonts.roboto(textStyle:TextStyle(color: Colors.white,wordSpacing:3,fontWeight: FontWeight.w100)),),
+            Text('Create your Account Now!!\n         Time to Dig in ...',style: GoogleFonts.roboto(textStyle:TextStyle(color: Colors.white,wordSpacing:3,fontWeight: FontWeight.w100)),),
             const SizedBox(
               height: 18,
             ),
@@ -105,7 +96,19 @@ class _MyLoginPage extends State<LoginPage> {
             const SizedBox(
               height: 18,
             ),
+            TextFieldPage(
+                icon: const Icon(
+                  Icons.lock_outline_rounded,
+                  color: Colors.white54,
+                ),
+                controller: confirmController,
+                hintText: "Confirm Password",
+                obscureText: false),
+            const SizedBox(
+              height: 18,
+            ),
             OutlinedButton(
+                onPressed: SignUp,
                 style: ButtonStyle(
                   side: MaterialStateProperty.all(
                     const BorderSide(color: Colors.white),
@@ -113,9 +116,8 @@ class _MyLoginPage extends State<LoginPage> {
                   shape: MaterialStateProperty.all(RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8))),
                 ),
-                onPressed: SignIn,
                 child: const Text(
-                  "     Login      ",
+                  "     SignUp      ",
                   style: TextStyle(color: Colors.white),
                 )),
             SizedBox(
@@ -125,17 +127,16 @@ class _MyLoginPage extends State<LoginPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "No Account ? then ",
+                  "Already have an Account? then ",
                   style: TextStyle(color: Colors.white54),
                 ),
                 SizedBox(
                   width: 4,
                 ),
                 GestureDetector(
-                  onTap:widget.onTap,
-
+                  onTap: widget.onTap,
                   child: Text(
-                    'Register',
+                    'Login Now',
                     style: TextStyle(
                         fontWeight: FontWeight.bold, color: Colors.white70),
                   ),
@@ -144,7 +145,7 @@ class _MyLoginPage extends State<LoginPage> {
             ),
             const Expanded(
                 child: SizedBox(
-              height: 12,
+              height: 18,
             )),
           ],
         ),

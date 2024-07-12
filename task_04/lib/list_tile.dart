@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:task_04/chatroompage.dart';
 font(size,color,fontW) {
     return GoogleFonts.ubuntu(textStyle:TextStyle(fontSize: size,color: color,fontWeight: fontW));
   }
@@ -18,6 +19,9 @@ class _MyListTilePage extends State<StatefulWidget> {
     return Padding(
         padding: const EdgeInsets.all(8.0),
         child: ListTile(
+          onTap: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context)=>ChatRoomPage()));
+          },
           horizontalTitleGap: 28,
           contentPadding: EdgeInsets.all(4.0),
           title: Text("UserName",style: font(16.0,Colors.white70,FontWeight.w700),),
