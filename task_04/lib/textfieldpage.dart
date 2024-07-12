@@ -16,7 +16,7 @@ class TextFieldPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 4.0, left: 22, right: 18),
+      padding: const EdgeInsets.all(4.0),
       child: Container(
         decoration: BoxDecoration(
           boxShadow: [BoxShadow(

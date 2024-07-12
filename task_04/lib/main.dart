@@ -1,11 +1,8 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:task_04/list_tile.dart';
 import 'package:task_04/login_or_register_page.dart';
-import 'package:task_04/loginpage.dart';
-import 'package:task_04/registerpage.dart';
 
 void main() {
   runApp(const MyApp());

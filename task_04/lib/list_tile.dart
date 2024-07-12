@@ -1,6 +1,4 @@
-import 'dart:ui';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:task_04/chatroompage.dart';
@@ -23,7 +21,7 @@ class _MyListTilePage extends State<StatefulWidget> {
             Navigator.push(context, MaterialPageRoute(builder: (context)=>ChatRoomPage()));
           },
           horizontalTitleGap: 28,
-          contentPadding: EdgeInsets.all(4.0),
+          contentPadding: const EdgeInsets.all(4.0),
           title: Text("UserName",style: font(16.0,Colors.white70,FontWeight.w700),),
           subtitle: Text('user\'s text messages all appear here.',style: font(14.0,Colors.white54,FontWeight.w400),),
           leading: CircleAvatar(

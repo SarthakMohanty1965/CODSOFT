@@ -1,4 +1,6 @@
 
+// ignore_for_file: unnecessary_import
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -31,7 +33,7 @@ class _MyChatRoomPage extends State<StatefulWidget> {
                 ]),
             child: Text(' Chat app ', style: a1(Colors.black, 18.0))),),
       backgroundColor: Colors.black,
-      body: Center(
+      body: const Center(
 
         child:Column(
           mainAxisAlignment: MainAxisAlignment.end,
