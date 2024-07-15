@@ -1,11 +1,20 @@
 import 'dart:ui';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'package:task_04/firebase_options.dart';
 import 'package:task_04/list_tile.dart';
-import 'package:task_04/login_or_register_page.dart';
+import 'package:task_04/service/authorisation/auth_path.dart';
+import 'package:task_04/service/authorisation/service_authorisation_page.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  runApp(ChangeNotifierProvider(
+    create: (context) => AuthService_Page(),
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -13,13 +22,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Chat App',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
         useMaterial3: true,
       ),
-      home:  LoginOrRegistPage(),
+      home: const AuthPathPage(),
     );
   }
 }
@@ -39,21 +48,27 @@ class _MyHomePageState extends State<MyHomePage> {
       child: Scaffold(
         appBar: AppBar(
           elevation: 0.0,
-          actions:  [
-            IconButton(onPressed: (){ }, icon: const Icon(Icons.more_vert_rounded,color: Colors.teal,))
+          actions: [
+            IconButton(
+                onPressed: () {},
+                icon: const Icon(
+                  Icons.more_vert_rounded,
+                  color: Colors.teal,
+                ))
           ],
           backgroundColor: Colors.black,
           iconTheme: IconThemeData(color: Colors.teal.shade400),
           title: Container(
+              padding: EdgeInsets.all(4),
               decoration: BoxDecoration(
                   color: Colors.white,
-                  border: Border.all(width: 5, color: Colors.black12),
+                  border: Border.all(width: 2, color: Colors.grey.shade300),
                   borderRadius: BorderRadius.circular(3),
                   boxShadow: const [
                     BoxShadow(
                         blurRadius: 6,
                         spreadRadius: 1,
-                        offset: Offset(2,3),
+                        offset: Offset(2, 3),
                         color: Colors.tealAccent)
                   ]),
               child: Text(' Chat app ', style: a1(Colors.black, 18.0))),
@@ -84,7 +99,6 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                     ],
                   ),
-
                   const SizedBox(
                     height: 12,
                   ),
@@ -93,7 +107,9 @@ class _MyHomePageState extends State<MyHomePage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       ListTile(
-                        leading: const SizedBox(width: 24,),
+                        leading: const SizedBox(
+                          width: 24,
+                        ),
                         tileColor: Colors.transparent,
                         trailing: const Icon(
                           Icons.settings_outlined,
@@ -105,7 +121,9 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                       ),
                       ListTile(
-                        leading: const SizedBox(width: 24,),
+                          leading: const SizedBox(
+                            width: 24,
+                          ),
                           tileColor: Colors.transparent,
                           trailing: const Icon(
                             Icons.info_outline,
@@ -124,23 +142,25 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         backgroundColor: Colors.black,
         floatingActionButton: Padding(
-          padding: const EdgeInsets.only(bottom: 32.0,right: 18),
-          child: FloatingActionButton(onPressed:(){} ,
+          padding: const EdgeInsets.only(bottom: 32.0, right: 18),
+          child: FloatingActionButton(
+            onPressed: () {},
             backgroundColor: Colors.black,
-            tooltip:'New Chat',
+            tooltip: 'New Chat',
             shape: const CircleBorder(side: BorderSide(color: Colors.teal)),
-            splashColor: Colors.teal.shade100,child: const Icon(Icons.add,color: Colors.white,),
+            splashColor: Colors.teal.shade100,
+            child: const Icon(
+              Icons.add,
+              color: Colors.white,
+            ),
           ),
         ),
         body: Center(
           child: Padding(
             padding: const EdgeInsets.all(18.0),
-            child: ListView(
-
-                children: [
+            child: ListView(children: [
               ListTilepage(),
               ListTilepage(),
-
             ]),
           ),
         ),
@@ -156,12 +176,13 @@ class _MyHomePageState extends State<MyHomePage> {
       color: color,
     ));
   }
+
   a1(color, txtSize) {
     return GoogleFonts.cedarvilleCursive(
         textStyle: TextStyle(
-          fontSize: txtSize,
-          fontWeight: FontWeight.w500,
-          color: color,
-        ));
+      fontSize: txtSize,
+      fontWeight: FontWeight.w500,
+      color: color,
+    ));
   }
 }

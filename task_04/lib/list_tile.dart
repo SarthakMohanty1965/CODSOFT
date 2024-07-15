@@ -22,7 +22,7 @@ class _MyListTilePage extends State<StatefulWidget> {
           },
           horizontalTitleGap: 28,
           contentPadding: const EdgeInsets.all(4.0),
-          title: Text("UserName",style: font(16.0,Colors.white70,FontWeight.w700),),
+          title: Text("UserName",style:GoogleFonts.ubuntu(textStyle:TextStyle(fontSize: 16.0,color: Colors.white,),)),
           subtitle: Text('user\'s text messages all appear here.',style: font(14.0,Colors.white54,FontWeight.w400),),
           leading: CircleAvatar(
             backgroundColor: Colors.teal,
