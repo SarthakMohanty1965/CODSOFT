@@ -3,6 +3,8 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'package:task_04/service/authorisation/service_authorisation_page.dart';
 import 'package:task_04/textfieldpage.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -17,7 +19,19 @@ class _MyRegisterPage extends State<RegisterPage> {
   final passController = TextEditingController();
   final confirmController = TextEditingController();
 
-  void SignUp(){}
+  Future<void> SignUp() async {
+    if(passController.text!=confirmController.text){
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("PassWord does not match,Check again!",style: TextStyle(color: Colors.white),)));
+      return;
+    }
+    final serviceAuth = Provider.of<AuthService_Page>(context,listen: false);
+    try{
+      await serviceAuth.signUpWtihEmailandPassword(emailController.text, passController.text);
+    }catch(e){
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(e.toString())));
+    }
+
+  }
   @override
   Widget build(BuildContext context) {
     return SafeArea(

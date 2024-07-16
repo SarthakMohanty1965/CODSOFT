@@ -42,6 +42,10 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  void signOut(){
+    final serviceAuth = Provider.of<AuthService_Page>(context,listen: false);
+    serviceAuth.signOut();
+  }
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -50,9 +54,9 @@ class _MyHomePageState extends State<MyHomePage> {
           elevation: 0.0,
           actions: [
             IconButton(
-                onPressed: () {},
+                onPressed:signOut,
                 icon: const Icon(
-                  Icons.more_vert_rounded,
+                  Icons.logout_rounded,
                   color: Colors.teal,
                 ))
           ],
