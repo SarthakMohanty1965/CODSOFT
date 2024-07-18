@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:task01/add_transaction.dart';
 import 'package:task01/transaction_model.dart';
@@ -37,6 +38,9 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   final transactionName = TextEditingController();
   final transactionAmount = TextEditingController();
+  final monthlyBudgetController = TextEditingController();
+
+  double monthlyBudget = 12000.0;
 
   final List _transactions = [
     ['Drinks',249.0,DateTime.now()],
@@ -119,8 +123,30 @@ double calculateTodayExpense() {
                 "All Transaction",
               ),
             ),
-            TextButton(onPressed: () {}, child: const Text("About Me")),
-            TextButton(onPressed: () {}, child: const Text("Exit"))
+            TextButton(onPressed: () {
+              Navigator.of(context).pop();
+              showDialog(
+                context: context,
+                builder: (context) {
+                  return AlertDialog(
+                    title: const Text('Instruction:'),
+                    content: const Text('This is a personal expense tracker app.\n\n#Tap on Monthly Budget to Update Budget.\n# Add Transaction\n# Single Tap to Edit Transaction\n# Double tap to delete Transaction.'),
+                    actions: [
+                      TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: const Text('Close'),
+                      ),
+                    ],
+                  );
+                },
+              );
+
+            }, child: const Text("How to Use")),
+            TextButton(onPressed: () {
+              SystemNavigator.pop();
+            }, child: const Text("Exit"))
           ],
         ),
       ),
@@ -130,6 +156,64 @@ double calculateTodayExpense() {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Padding(
+                padding: const EdgeInsets.only(top:8.0),
+                child: InkWell(
+                  onTap: (){
+                    //Change your monthly budget here,
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          title: const Text('Update Monthly Budget'),
+                          content: TextFormField(
+                            decoration: const InputDecoration(
+                              labelText: 'Monthly Budget',
+                            ),
+                            controller: monthlyBudgetController,
+                            keyboardType: TextInputType.number,
+                          ),
+                          actions: [
+                            TextButton(
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                              child: const Text('Cancel'),
+                            ),
+                            TextButton(
+                              onPressed: () {
+                                setState(() {
+                                  // Update the monthly budget here
+                                  // For example, you can store it in a variable or a database
+                                  monthlyBudget = double.parse(monthlyBudgetController.text);
+                                });
+                                Navigator.of(context).pop();
+                              },
+                              child: const Text('Save'),
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text(
+                        "Monthly Budget:",
+                        style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white70),
+                      ),
+                      Text(
+                        'Rs.$monthlyBudget',
+                        style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w500,color: Colors.amber),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
               const SizedBox(
                 height: 12,
               ),
@@ -184,7 +268,8 @@ double calculateTodayExpense() {
                                 padding: const EdgeInsets.only(left: 18.0),
                                 child: Text(
                                   'Rs.${calculateMonthlyExpense()}',
-                                  style: const TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
+                                  style:  TextStyle(fontSize: 24, fontWeight: FontWeight.w500,
+                                    color: calculateMonthlyExpense() > monthlyBudget ? Colors.red : Colors.green,),
                                 ),
                               ),
                               const SizedBox(height: 18),
@@ -192,18 +277,18 @@ double calculateTodayExpense() {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                    Padding(
-                                    padding: EdgeInsets.only(left: 18.0),
+                                    padding: const EdgeInsets.only(left: 18.0),
                                     child: Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        Text('Last Spent',
+                                        const Text('Last Spent',
                                             style: TextStyle(
                                                 fontSize: 14,
                                                 fontWeight: FontWeight.w400,
                                                 color: Colors.amber)),
                                         Text('Rs.${getLastSpent().toStringAsFixed(2)}',
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                                 fontSize: 16,
                                                 fontWeight: FontWeight.w500,
                                                 color: Colors.red)),
@@ -213,7 +298,7 @@ double calculateTodayExpense() {
                                   const SizedBox(width: 38),
                                   Column(
                                     children: [
-                                       Text('Today\'s Expense',
+                                       const Text('Today\'s Expense',
                                           style: TextStyle(
                                               fontSize: 14,
                                               fontWeight: FontWeight.w400,
@@ -286,14 +371,14 @@ double calculateTodayExpense() {
                     context: context,
                     builder: (context) {
                       return AlertDialog(
-                        title: Text('Delete Transaction'),
-                        content: Text('Are you sure you want to delete this transaction?'),
+                        title: const Text('Delete Transaction'),
+                        content: const Text('Are you sure you want to delete this transaction?'),
                         actions: [
                           TextButton(
                             onPressed: () {
                               Navigator.of(context).pop();
                             },
-                            child: Text('Cancel'),
+                            child: const Text('Cancel'),
                           ),
                           TextButton(
                             onPressed: () {
@@ -302,7 +387,7 @@ double calculateTodayExpense() {
                               });
                               Navigator.of(context).pop();
                             },
-                            child: Text('Delete'),
+                            child: const Text('Delete'),
                           ),
                         ],
                       );
@@ -330,12 +415,12 @@ double calculateTodayExpense() {
     context: context,
     builder: (context) {
       return AlertDialog(
-        title: Text('Edit Expense'),
+        title: const Text('Edit Expense'),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             TextField(
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Name',
               ),
 
@@ -345,7 +430,7 @@ double calculateTodayExpense() {
               },
             ),
             TextField(
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Amount',
               ),
               controller: amountController,
@@ -360,14 +445,14 @@ double calculateTodayExpense() {
             onPressed: () {
               Navigator.of(context).pop();
             },
-            child: Text('Cancel'),
+            child: const Text('Cancel'),
           ),
           TextButton(
             onPressed: () {
               Navigator.of(context).pop();
               setState(() {});
             },
-            child: Text('Save'),
+            child: const Text('Save'),
           ),
         ],
       );
