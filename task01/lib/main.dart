@@ -117,12 +117,6 @@ double calculateTodayExpense() {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            TextButton(
-              onPressed: () {},
-              child: const Text(
-                "All Transaction",
-              ),
-            ),
             TextButton(onPressed: () {
               Navigator.of(context).pop();
               showDialog(
