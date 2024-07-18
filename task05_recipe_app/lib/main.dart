@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:task05_recipe_app/aboutpage.dart';
 import 'package:task05_recipe_app/recipedetailpage.dart';
 
 void main() {
@@ -15,7 +17,7 @@ class MyApp extends StatelessWidget {
       title: 'Recipe App Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.dark(),
+        colorScheme: const ColorScheme.dark(),
         useMaterial3: true,
       ),
       home: const MyHomePage(),
@@ -364,7 +366,7 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         elevation: 0.0,
         actions: [
-          IconButton(onPressed: (){}, icon: const Icon(Icons.menu_rounded)),
+
           Expanded(
               child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25.0,vertical: 4.0),
@@ -372,14 +374,38 @@ class _MyHomePageState extends State<MyHomePage> {
               leading: const Icon(Icons.search),
               surfaceTintColor: MaterialStateProperty.all(Colors.white),
               backgroundColor: MaterialStateProperty.all(Colors.black),
-              hintText: 'Search Recipes Here',
+              hintText: '"Search Recipes"',
+              hintStyle: MaterialStateProperty.all(const TextStyle(color: Colors.grey)),
               onChanged: (value) {
                   setState(() {
                     _searchQuery = value.toLowerCase();
                   });
                 },
             ),
-          ))
+          )),
+          PopupMenuButton<String>(
+            onSelected: (value) {
+              if (value == 'About Us') {
+                // Navigate to the About Us page
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>const AboutUsPage()));
+              } else if (value == 'Exit') {
+                // Exit the app
+                SystemNavigator.pop();
+              }
+            },
+            itemBuilder: (BuildContext context) {
+              return [
+                const PopupMenuItem<String>(
+                  value: 'About Us',
+                  child: Text('About Us'),
+                ),
+                const PopupMenuItem<String>(
+                  value: 'Exit',
+                  child: Text('Exit'),
+                ),
+              ];
+            },
+          ),
         ],
       ),
       body: ListView.builder(
@@ -389,12 +415,13 @@ class _MyHomePageState extends State<MyHomePage> {
             padding: const EdgeInsets.symmetric(horizontal: 20.0,vertical: 2.0),
             child: Card(
               surfaceTintColor: Colors.black,
-              color: Colors.blue.shade300,
+              color: Colors.brown.shade400,
               elevation: 12.0,
               child: ListTile(
                 leading: Container(
-                  decoration: const BoxDecoration(
-                    boxShadow: [BoxShadow(
+                  decoration:  BoxDecoration(
+                    borderRadius: BorderRadius.circular(150.0),
+                    boxShadow: const [BoxShadow(
                       color: Colors.black,
                       blurRadius: 8,
                       offset: Offset(2,4)
@@ -402,7 +429,9 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                   height: 150,
                   width: 50, // adjust the width to your liking
-                  child: Image.network(_searchQuery.isEmpty ? _recipes[index].image : _recipes.where((recipe) => recipe.title.toLowerCase().contains(_searchQuery)).elementAt(index).image),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(150.0),
+                      child: Image.network(_searchQuery.isEmpty ? _recipes[index].image : _recipes.where((recipe) => recipe.title.toLowerCase().contains(_searchQuery)).elementAt(index).image)),
                 ),
                 title: Text(_searchQuery.isEmpty ? _recipes[index].title : _recipes.where((recipe) => recipe.title.toLowerCase().contains(_searchQuery)).elementAt(index).title,style: GoogleFonts.ubuntu(textStyle: const TextStyle(fontSize: 16,)),),
                 subtitle: Text(_searchQuery.isEmpty ? _recipes[index].description : _recipes.where((recipe) => recipe.title.toLowerCase().contains(_searchQuery)).elementAt(index).description),

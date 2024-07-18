@@ -12,35 +12,38 @@ class RecipeDetailsPage extends StatelessWidget {
       appBar: AppBar(
         leading:IconButton(onPressed: (){
           Navigator.of(context).pop();
-        }, icon: Icon(Icons.chevron_left,color: Colors.white,),),
-        backgroundColor: Colors.black,
+        }, icon: const Icon(Icons.chevron_left,color: Colors.white,size: 30,),),
+        backgroundColor: Colors.transparent,
         centerTitle: true,
         elevation: 0.0,
-        title: Text(recipe.title,style: TextStyle(color: Colors.white),),
+        title: Text(recipe.title,style: const TextStyle(color: Colors.white),),
       ),
-      backgroundColor: Colors.black,
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
+      backgroundColor: Colors.brown.shade500,
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: SingleChildScrollView(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(120.0),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.white.withOpacity(0.6),
-                      blurRadius: 22,
-                      spreadRadius: 12,
-                    ),
-                  ],
+              Center(
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(120.0),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.6),
+                        blurRadius: 22,
+                        spreadRadius: 12,
+                      ),
+                    ],
+                  ),
+                  child: ClipRRect(
+                      borderRadius: BorderRadius.circular(120.0),child: Image.network(recipe.image)),
                 ),
-                child: ClipRRect(
-                    borderRadius: BorderRadius.circular(120.0),child: Image.network(recipe.image)),
               ),
-              SizedBox(height: 18,),
+              const SizedBox(height: 18,),
               Text(recipe.description,style:GoogleFonts.ubuntu(textStyle: const TextStyle(color: Colors.white), ), ),
-              SizedBox(height: 18,),
+              const SizedBox(height: 18,),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -48,7 +51,7 @@ class RecipeDetailsPage extends StatelessWidget {
                   Text('INSTRUCTIONS: \n  \t${recipe.instructions}',style: GoogleFonts.ubuntu(textStyle: const TextStyle(color: Colors.white), ), ),
                 ],
               ),
-              SizedBox(height: 18,),
+              const SizedBox(height: 18,),
               Text('Cooking Time: ${recipe.cookingTime}',style: GoogleFonts.ubuntu(textStyle: const TextStyle(color: Colors.white), ), ),
               Text('Servings: ${recipe.servings}',style: GoogleFonts.ubuntu(textStyle: const TextStyle(color: Colors.white), ), ),
               Text('Difficulty: ${recipe.difficulty}',style:GoogleFonts.ubuntu(textStyle: const TextStyle(color: Colors.white), ), ),
