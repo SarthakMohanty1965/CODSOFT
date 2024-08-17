@@ -40,8 +40,9 @@ class _MyHomePageState extends State<MyHomePage> {
   final transactionAmount = TextEditingController();
   final monthlyBudgetController = TextEditingController();
 
-  double monthlyBudget = 12000.0;
+  double monthlyBudget = 12000.0; //default budget
 
+  //some default transactions
   final List _transactions = [
     ['Drinks',249.0,DateTime.now()],
     ['Food',850.0,DateTime.now()],
@@ -94,9 +95,6 @@ double calculateTodayExpense() {
           return AddTransaction(addTransaction: addTransactionbtn, transactionName: transactionName, transactionAmount: transactionAmount,);
         });
   }
-
-
-
 
   @override
   Widget build(BuildContext context) {
